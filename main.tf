@@ -19,6 +19,11 @@ provider "azurerm" {
     features {}
 }
 
+variable "IMAGEBUILD" {
+  type = string
+  default = ""
+}
+
 resource "azurerm_resource_group" "tf_test_api" {
   name = "tfapirg"
   location = "UK South"
@@ -35,7 +40,7 @@ resource "azurerm_container_group" "tf_container_group" {
 
   container {
     name = "weatherapi"
-    image = "almcfarlane/weatherapi"
+    image = "almcfarlane/weatherapi:${var.IMAGEBUILD}"
     cpu = "1"
     memory = "1"
 
