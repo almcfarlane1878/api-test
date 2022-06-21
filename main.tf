@@ -5,6 +5,14 @@ terraform {
       version = "3.6.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name = "TFResourceGroup"
+    storage_account_name = "terraformstatesapi"
+    container_name = "statefiles"
+    key = "apitf.tfstate"
+    
+  }
 }
 
 provider "azurerm" {
